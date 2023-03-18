@@ -4,7 +4,7 @@ import './App.scss';
 
 function App(): JSX.Element {
   return (
-    <div className="App">
+    <div className="app">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<h1 className="h1">About us</h1>} />

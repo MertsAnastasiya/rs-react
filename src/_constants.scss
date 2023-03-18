@@ -1,6 +1,9 @@
-$color-light: #f2f2f2;
-$color-dark: #000000;
-$color-bright: #d4e80e;
-$color-add: #a5a5a5;
+@import './reset';
+
+$color-light: #ffffff;
+$color-background: #353f4b;
+$color-dark: #1e2630;
+$color-bright: #e3b347;
+$color-add: #688698;
 
 $border-radius: 0.5rem;

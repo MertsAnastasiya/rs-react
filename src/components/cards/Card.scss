@@ -1,21 +1,58 @@
 @import '../../constants';
 
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
 .card {
-    border: 3px solid $color-bright;
-    width: 20rem;
-    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 2px solid $color-light;
+    border-radius: $border-radius;
+    width: 20.2rem;
+    height: 25.2rem;
+    background-color: $color-dark;
+    padding: 0.5rem;
+    position: relative;
 }
 
 .card__image {
+    display: inline-block;
+    width: 99%;
+    height: 15rem;
     border-radius: $border-radius;
+    // background-image: url('https://i.dummyjson.com/data/products/2/thumbnail.jpg');
+    // background-position: center;
+    // background-size: cover;
+}
+
+.card__city, .card__price {
+    font-size: 1.6rem;
+    color: $color-add;
+}
+
+.card__detail {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    color: $color-bright;
 }
 
 .card__like {
-    width: 5rem;
-    height: 5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background-color: $color-bright;
     -webkit-mask: url('../../assets/icons/like.svg') no-repeat center;
     mask: url('../../assets/icons/like.svg') no-repeat center;
+    mask-size: contain;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
 }
 
 .card__like.liked{

@@ -2,8 +2,15 @@
 
 .input {
     border-radius: $border-radius;
-    border-color: $color-bright;
+    border: 2px solid $color-light;
+    background-color: $color-dark;
+    color: $color-light;
     width: 30rem;
     position: relative;
     font-size: 2rem;
+    padding: 0.5rem;
+
+    &::placeholder {
+        color: $color-light;
+    }
 }
