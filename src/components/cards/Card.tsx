@@ -5,7 +5,7 @@ export class Card extends Component {
     render() {
         return (
         <div className="card">
-            <image className="card__image"></image>
+            <img className="card__image"></img>
             <p className="card__title">Title</p>
             <p className="card__price">$536</p>
             <p className="card__like"></p>
