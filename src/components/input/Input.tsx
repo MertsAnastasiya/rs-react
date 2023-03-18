@@ -9,11 +9,15 @@ export class Seacrh extends Component<InputProps, InputState> {
     this.state = {searchValue: this.props.searchValue};
   }
 
+  public componentWillUnmount(): void {
+    console.log('unmount');
+    localStorage.setItem('searchValue', this.state.searchValue);
+  }
+
   private handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
       this.props.changeStateBySeacrh(target.value);
-      // localStorage.setItem('searchValue', this.state.searchValue);
     }
   };
 
