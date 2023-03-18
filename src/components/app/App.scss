@@ -1,10 +1,12 @@
+@import '../../constants';
+
 html {
     font-size: 10px;
 }
 
 body {
-    background-color: aquamarine;
-    color: black;
+    background-color: $color-light;
+    color: $color-dark;
     display: flex;
     flex-direction: column;
     align-items: center;

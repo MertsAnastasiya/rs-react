@@ -1,7 +1,9 @@
+@import '../../constants';
+
 .input {
-    border-radius: 5px;
-    border-color: blueviolet;
-    width: 300px;
+    border-radius: $border-radius;
+    border-color: $color-bright;
+    width: 30rem;
     position: relative;
     font-size: 2rem;
 }

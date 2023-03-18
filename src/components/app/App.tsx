@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import { Input } from './components/input/Input';
+import { Input } from '../input/Input';
 import './App.scss';
-import { createClassList } from './utils';
+import { createClassList } from '../../utils';
 
 function App() {
   return (
