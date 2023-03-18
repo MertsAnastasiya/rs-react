@@ -1,0 +1,24 @@
+@import '../../constants';
+
+.card {
+    border: 3px solid $color-bright;
+    width: 20rem;
+    height: 25rem;
+}
+
+.card__image {
+    border-radius: $border-radius;
+}
+
+.card__like {
+    width: 5rem;
+    height: 5rem;
+    background-color: $color-bright;
+    -webkit-mask: url('../../assets/icons/like.svg') no-repeat center;
+    mask: url('../../assets/icons/like.svg') no-repeat center;
+}
+
+.card__like.liked{
+    -webkit-mask: url('../../assets/icons/liked.svg') no-repeat center;
+    mask: url('../../assets/icons/liked.svg') no-repeat center;
+}
