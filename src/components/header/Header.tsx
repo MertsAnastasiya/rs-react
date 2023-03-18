@@ -4,7 +4,7 @@ import './Header.scss';
 export const Header = (): JSX.Element => {
   return (
     <header className="header">
-      <div className="container header__container">
+      <div className="header__container container">
         <nav>
           <ul className="navigation__list">
             <li>

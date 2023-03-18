@@ -10,7 +10,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2re
+    font-size: 2rem;
+}
+
+#root {
+    width: 100%;
 }
 
 .container {

@@ -12,5 +12,27 @@
 
     &::placeholder {
         color: $color-light;
+        opacity: 0.8;
     }
+
+    &:focus::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.input_search::before {
+    content: "$";
+    position: relative;
+    display: block;
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    background: url("../assets/icons/liked.svg") no-repeat;
+    filter: invert(75%) sepia(5%) saturate(3778%) hue-rotate(338deg) brightness(102%) contrast(91%);
+    background-size: contain;
+    padding-right: 20px;
 }
