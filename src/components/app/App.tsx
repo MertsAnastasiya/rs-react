@@ -1,16 +1,22 @@
 import { Routes, Route } from 'react-router-dom';
 import { Home } from '../Home';
+import { Header } from '../header/Header';
 import './App.scss';
+import { Fragment } from 'react';
+import { About } from '../About';
+import { Error } from '../Error';
 
 function App(): JSX.Element {
   return (
-    <div className="app">
+    //FRAGMENT ???
+    <Fragment>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<h1 className="h1">About us</h1>} />
-        <Route path="*" element={<h1 className="h1">The page not found</h1>} />
+        <Route path="about" element={<About />} />
+        <Route path="*" element={<Error />} />
       </Routes>
-    </div>
+    </Fragment>
   );
 }
 

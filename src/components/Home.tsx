@@ -40,8 +40,7 @@ export class Home extends Component<{}, {searchValue: string}> {
 
   public render(): JSX.Element {
     return (
-      <Fragment>
-        <h1 className="h1">Home</h1>
+      <div className="main__container container">
         <Seacrh
           id="search"
           classes={createClassList(['input', 'input_search'])}
@@ -50,7 +49,7 @@ export class Home extends Component<{}, {searchValue: string}> {
           changeStateBySeacrh={this.changeStateBySeacrh}
         />
         <CardsList productResult={this.searchData(this.state.searchValue)} />
-      </Fragment>
+      </div>
     );
   }
 }
