@@ -6,14 +6,14 @@ export class Seacrh extends Component<InputProps, InputState> {
   constructor(props: InputProps) {
     super(props);
 
-    this.state = {
-      searchValue: localStorage.getItem('searchValue') || '',
-    };
+    this.state = {searchValue: this.props.searchValue};
   }
 
   private handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    const target: HTMLInputElement = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
-      localStorage.setItem('searchValue', this.state.searchValue);
+      this.props.changeStateBySeacrh(target.value);
+      // localStorage.setItem('searchValue', this.state.searchValue);
     }
   };
 
@@ -22,6 +22,7 @@ export class Seacrh extends Component<InputProps, InputState> {
     this.setState({
       searchValue: target.value,
     });
+    this.props.changeStateBySeacrh(target.value);
   }
 
   public render(): JSX.Element {
