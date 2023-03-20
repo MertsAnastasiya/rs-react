@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { CardProps } from 'types';
-import './Card.scss';
+// import '../../components/cards/Card.scss';
 
 export class Card extends Component<CardProps, {}> {
   public render(): JSX.Element {
@@ -11,8 +11,8 @@ export class Card extends Component<CardProps, {}> {
         <p className="card__city">{this.props.city}</p>
         <p className="card__price">$ {this.props.price}</p>
         <p className="card__detail">
-          <p className="card__square">{this.props.living}m2</p>
-          <p className="card__rooms">{this.props.rooms} rooms</p>
+          <span className="card__square">{this.props.living}m2</span>
+          <span className="card__rooms">{this.props.rooms} rooms</span>
         </p>
         <p className="card__like"></p>
       </div>

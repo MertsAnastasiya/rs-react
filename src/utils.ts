@@ -1,6 +1,7 @@
 export function createClassList(names: string[]): string {
-  let classList: string = '';
-  names.forEach((item) => (classList += `${item} `));
+  let classListString: string = '';
+  names.forEach((item) => (classListString += `${item} `));
+  classListString = classListString.substring(0, classListString.length - 1);
 
-  return classList;
+  return classListString;
 }

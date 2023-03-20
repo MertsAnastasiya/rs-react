@@ -17,8 +17,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "types": [
+      "jest",
+      "node"]
   },
-  "include": ["./src/**/*", "styled.d.ts"],
+  "include": ["./src/**/*", "styled.d.ts", "./src/tests/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
