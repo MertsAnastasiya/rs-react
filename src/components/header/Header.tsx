@@ -13,6 +13,9 @@ export const Header = (): JSX.Element => {
             <li>
               <NavLink to={'/about'} className="link">About Us</NavLink>
             </li>
+            <li>
+              <NavLink to={'/form'} className="link">Form</NavLink>
+            </li>
           </ul>
         </nav>
       </div>
