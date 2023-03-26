@@ -8,13 +8,19 @@ export const Header = (): JSX.Element => {
         <nav>
           <ul className="navigation__list">
             <li>
-              <NavLink to={'/'} className="link">Home</NavLink>
+              <NavLink to={'/'} className="link">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/about'} className="link">About Us</NavLink>
+              <NavLink to={'/about'} className="link">
+                About Us
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/form'} className="link">Form</NavLink>
+              <NavLink to={'/form'} className="link">
+                Form
+              </NavLink>
             </li>
           </ul>
         </nav>

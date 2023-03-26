@@ -4,4 +4,4 @@ export const About = () => {
       <h1 className="h1">The content will be soon</h1>
     </div>
   );
-}
+};

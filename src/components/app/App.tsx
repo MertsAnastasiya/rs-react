@@ -9,7 +9,6 @@ import { Form } from '../form/Form';
 
 function App(): JSX.Element {
   return (
-    //FRAGMENT ???
     <Fragment>
       <Header />
       <Routes>

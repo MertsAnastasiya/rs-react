@@ -1,30 +1,24 @@
-import { Component, Fragment } from 'react';
-import { Seacrh } from './input/Input';
+import { Component } from 'react';
+import { Seacrh } from './search/Search';
 import { createClassList } from '../utils';
-import { Card } from './cards/Card';
 import { productsData } from '../data';
 import { IProduct, ProductProperty } from 'types';
 import { CardsList } from './cards/CardsList';
 
-export class Home extends Component<{}, {searchValue: string}> {
+export class Home extends Component<Record<string, never>, { searchValue: string }> {
   public state = {
     searchValue: localStorage.getItem('searchValue') || '',
-  }
+  };
 
   private searchData = (searchValue: string): IProduct[] => {
-    let productsResult: IProduct[] = [];
+    const productsResult: IProduct[] = [];
     productsData.forEach((product) => {
-      let addToResult: boolean = false;
+      let addToResult = false;
       const propertiesOfProduct: ProductProperty[] = Object.keys(product) as ProductProperty[];
 
       propertiesOfProduct.forEach((property) => {
-        if (
-            product[property]
-                .toString()
-                .toLowerCase()
-                .includes(searchValue.toLowerCase())
-        ) {
-            addToResult = true;
+        if (product[property].toString().toLowerCase().includes(searchValue.toLowerCase())) {
+          addToResult = true;
         }
       });
 
@@ -32,11 +26,11 @@ export class Home extends Component<{}, {searchValue: string}> {
     });
 
     return productsResult;
-  }
+  };
 
   private changeStateBySeacrh = (searchInputValue: string): void => {
-    this.setState({searchValue: searchInputValue});
-  }
+    this.setState({ searchValue: searchInputValue });
+  };
 
   public render(): JSX.Element {
     return (
