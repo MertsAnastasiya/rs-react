@@ -202,7 +202,7 @@ export class Form extends Component<Record<string, never>, FormState> {
               onChange={this.handleChangeInput}
             />
             <div ref={this.imageRef} className="image"></div>
-            <button onClick={this.handleClickSubmit}>Submit</button>
+            <button onClick={this.handleClickSubmit} className="button">Submit</button>
           </form>
         </div>
       </Fragment>

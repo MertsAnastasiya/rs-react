@@ -65,5 +65,11 @@
     width: 5rem;
     height: 5rem;
     background-size: cover;
+}
 
+.button {
+    align-self: center;
+    background-color: $color-bright;
+    border-radius: $border-radius;
+    width: 50%;
 }
