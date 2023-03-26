@@ -1,16 +1,15 @@
 import { Component } from 'react';
 import { InputProps, InputState } from 'types';
-import './Input.scss';
+import './Search.scss';
 
 export class Seacrh extends Component<InputProps, InputState> {
   constructor(props: InputProps) {
     super(props);
 
-    this.state = {searchValue: this.props.searchValue};
+    this.state = { searchValue: this.props.searchValue };
   }
 
   public componentWillUnmount(): void {
-    console.log('unmount');
     localStorage.setItem('searchValue', this.state.searchValue);
   }
 
@@ -27,7 +26,7 @@ export class Seacrh extends Component<InputProps, InputState> {
       searchValue: target.value,
     });
     this.props.changeStateBySeacrh(target.value);
-  }
+  };
 
   public render(): JSX.Element {
     const { id, classes, placeholder } = this.props;
