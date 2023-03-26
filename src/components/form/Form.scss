@@ -1,0 +1,69 @@
+@import '../../reset';
+@import '../../constants';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.radio__wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.input_radio {
+    margin: 0;
+    width: 2rem;
+}
+
+.checkboxes__wrapper {
+    display: flex;
+}
+
+.input_file {
+    opacity: 0;
+}
+
+.label_file {
+    cursor: pointer;
+    border: 1px solid $color-bright;
+    border-radius: $border-radius;
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem 3.5rem;
+    width: 20rem;
+    height: 3.5rem;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        width: 2.5rem;
+        height: 2.5rem;
+        background-image: url('../../assets/icons/load_bright.svg');
+        background-size: cover;
+        position: absolute;
+        left: 0.5rem;
+        top: 0.4rem;
+        transition-duration: .5s;
+    }
+
+    &:hover {
+        background-color: $color-bright;
+        color: $color-dark;
+
+        &::before {
+            background-image: url('../../assets/icons/load_dark.svg');
+        }
+    }
+}
+
+.input_date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.image {
+    width: 5rem;
+    height: 5rem;
+    background-size: cover;
+
+}
