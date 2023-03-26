@@ -43,19 +43,7 @@ export class Form extends Component<Record<string, never>, FormState> {
         : '';
     }
 
-//     if (event.target.classList.value.includes('input_radio')) {
-//
-//       this.radioRoomRef.current = {...this.radioOneRoomRef.current};
-//       //   ? this.radioOneRoomRef
-//       //   : this.radioTwoRoomRef.current!.checked
-//       //   ? this.radioTwoRoomRef
-//       //   : this.radioThreeRoomRef.current!.checked
-//       //   ? this.radioThreeRoomRef
-//       //   : this.radioFourRoomRef || this.radioOneRoomRef;
-//     }
-//     console.log(this.radioOneRoomRef);
-//     console.log(this.radioRoomRef);
-
+    //TODO RadioButton
 
     this.setState({
       streetText: this.inputStreetRef.current!.value,
@@ -75,33 +63,24 @@ export class Form extends Component<Record<string, never>, FormState> {
   };
 
   private handleClickSubmit = (event: React.MouseEvent): void => {
-
     event.preventDefault();
     console.log('submit');
-
-    // const response = await fetch('/', {
-    //   method: 'POST',
-    //   body: new FormData(this.formRef.current!)
-    // });
-    // const result = await response.json();
-    // console.log(result);
     console.log(this.state);
 
-    console.log(<Card
-      key={5}
-      street={this.state.streetText}
-      price={this.state.price}
-      city={this.state.cityText}
-      thumbnail={''}
-      living={90}
-      rooms={Number(this.state.rooms)}
-    />);
-  }
+    console.log(
+      <Card
+        key={5}
+        street={this.state.streetText}
+        price={this.state.price}
+        city={this.state.cityText}
+        thumbnail={''}
+        living={90}
+        rooms={Number(this.state.rooms)}
+      />
+    );
+  };
 
   public render(): JSX.Element {
-    const { streetText, cityText, avalableDate, price, file, rooms } = this.state;
-    console.log(`${rooms}`);
-
     return (
       <Fragment>
         <div className="main main__container">
