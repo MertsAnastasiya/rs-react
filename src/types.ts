@@ -33,3 +33,29 @@ export type CardProps = {
   price: number;
   thumbnail: string;
 }
+
+export type FormState = {
+  streetText: string;
+  cityText: string;
+  avalableDate: string;
+  price: number;
+  file: string;
+  parking: boolean;
+  balcony: boolean;
+  terrace: boolean;
+  rooms: string;
+};
+
+export type FieldCheckboxProps = {
+  label: string;
+  classNames: string[];
+  onChange: (event: React.ChangeEvent) => void;
+};
+
+export type FieldInputProps = {
+  type: string;
+  label: string;
+  id: string;
+  classNames: string[];
+  onChange: (event: React.ChangeEvent) => void;
+};

@@ -1,18 +1,11 @@
 import React from 'react';
 import { Component, Fragment } from 'react';
 import './Form.scss';
-
-type FormState = {
-  streetText: string;
-  cityText: string;
-  avalableDate: string;
-  price: number;
-  file: string;
-  parking: boolean;
-  balcony: boolean;
-  terrace: boolean;
-  // rooms: string;
-};
+import { FieldInput } from './FieldInput';
+import { FieldCheckbox } from './FieldCheckbox';
+import { FieldRadio } from './FieldRadio';
+import { FormState } from 'types';
+import { Card } from '../cards/Card';
 
 export class Form extends Component<Record<string, never>, FormState> {
   public state: FormState = {
@@ -24,9 +17,10 @@ export class Form extends Component<Record<string, never>, FormState> {
     parking: false,
     balcony: false,
     terrace: false,
-    // rooms: '',
+    rooms: '',
   };
 
+  private formRef: React.RefObject<HTMLFormElement> = React.createRef();
   private inputStreetRef: React.RefObject<HTMLInputElement> = React.createRef();
   private inputFileRef: React.RefObject<HTMLInputElement> = React.createRef();
   private inputFileLabelRef: React.RefObject<HTMLLabelElement> = React.createRef();
@@ -36,18 +30,32 @@ export class Form extends Component<Record<string, never>, FormState> {
   private checkboxBalconyRef: React.RefObject<HTMLInputElement> = React.createRef();
   private checkboxParkingRef: React.RefObject<HTMLInputElement> = React.createRef();
   private checkboxTerraceRef: React.RefObject<HTMLInputElement> = React.createRef();
-  private imageRef: React.RefObject<HTMLDivElement> = React.createRef();
-  // private inputRoomsRef: React.RefObject<HTMLInputElement> = React.createRef();
-  // private inputMaleRef: React.RefObject<HTMLInputElement> = React.createRef();
+  private radioOneRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+  private radioTwoRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+  private radioThreeRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+  private radioFourRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+  private radioRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   private handleChangeInput = (event: React.ChangeEvent): void => {
     if (event.target.classList.value.includes('input_file')) {
       this.inputFileLabelRef.current!.textContent = this.inputFileRef.current!.files
         ? this.inputFileRef.current!.files[0]!.name
         : '';
-        const src: string = URL.createObjectURL(this.inputFileRef.current!.files![0]);
-        this.imageRef.current!.style.backgroundImage = src.replace('blob:', '');
     }
+
+//     if (event.target.classList.value.includes('input_radio')) {
+//
+//       this.radioRoomRef.current = {...this.radioOneRoomRef.current};
+//       //   ? this.radioOneRoomRef
+//       //   : this.radioTwoRoomRef.current!.checked
+//       //   ? this.radioTwoRoomRef
+//       //   : this.radioThreeRoomRef.current!.checked
+//       //   ? this.radioThreeRoomRef
+//       //   : this.radioFourRoomRef || this.radioOneRoomRef;
+//     }
+//     console.log(this.radioOneRoomRef);
+//     console.log(this.radioRoomRef);
+
 
     this.setState({
       streetText: this.inputStreetRef.current!.value,
@@ -58,63 +66,47 @@ export class Form extends Component<Record<string, never>, FormState> {
       parking: this.checkboxParkingRef.current!.checked,
       balcony: this.checkboxBalconyRef.current!.checked,
       terrace: this.checkboxTerraceRef.current!.checked,
-      // rooms: this.inputRoomsRef.current!.value,
+      rooms: this.radioOneRoomRef.current!.id || '',
     });
-    console.log(this.state);
   };
 
   private handleClickFile = (): void => {
     this.inputFileRef.current!.click();
   };
 
-  private handleClickSubmit(event: React.MouseEvent): void {
-    console.log('submit');
+  private handleClickSubmit = (event: React.MouseEvent): void => {
+
     event.preventDefault();
+    console.log('submit');
+
+    // const response = await fetch('/', {
+    //   method: 'POST',
+    //   body: new FormData(this.formRef.current!)
+    // });
+    // const result = await response.json();
+    // console.log(result);
+    console.log(this.state);
+
+    console.log(<Card
+      key={5}
+      street={this.state.streetText}
+      price={this.state.price}
+      city={this.state.cityText}
+      thumbnail={''}
+      living={90}
+      rooms={Number(this.state.rooms)}
+    />);
   }
 
   public render(): JSX.Element {
-    const { streetText, cityText, avalableDate, price, file } = this.state;
-    console.log(`${streetText} - ${cityText} - ${avalableDate} - ${price} - ${file}`);
+    const { streetText, cityText, avalableDate, price, file, rooms } = this.state;
+    console.log(`${rooms}`);
 
     return (
       <Fragment>
         <div className="main main__container">
           <h1 className="h1">Form</h1>
-          <form className="form">
-            <label htmlFor="street" className="label">
-              Street:
-            </label>
-            <input
-              id="street"
-              ref={this.inputStreetRef}
-              type="text"
-              name="street"
-              className="input input_text"
-              onChange={this.handleChangeInput}
-            />
-
-            {/* <label className="label">City:
-              <input
-                ref={this.inputCityRef}
-                type="text"
-                name="address"
-                className="input input_text"
-                onChange={this.handleChangeInput}
-              />
-            </label> */}
-
-            <label htmlFor="date" className="label">
-              Available date:
-            </label>
-            <input
-              id="date"
-              ref={this.inputAvailabilityRef}
-              type="date"
-              name="date"
-              className="input input_date"
-              onChange={this.handleChangeInput}
-            />
-
+          <form ref={this.formRef} className="form">
             <label htmlFor="city" className="label">
               Choose a city:
             </label>
@@ -130,63 +122,90 @@ export class Form extends Component<Record<string, never>, FormState> {
               <option value="rotterdam">Rotterdam</option>
             </select>
 
+            <FieldInput
+              type="text"
+              id="street"
+              ref={this.inputStreetRef}
+              label="Street:"
+              classNames={['input', 'input_text']}
+              onChange={this.handleChangeInput}
+            />
+
+            <FieldInput
+              type="date"
+              id="date"
+              ref={this.inputAvailabilityRef}
+              label="Available date:"
+              classNames={['input', 'input_date']}
+              onChange={this.handleChangeInput}
+            />
             <div className="form__item">
               <p className="label">Additional options:</p>
-              <div id="options" className="checkboxes__wrapper">
-                <label className="label">
-                  <input ref={this.checkboxBalconyRef} type="checkbox" name="balcony" onChange={this.handleChangeInput} />
-                  Balcony
-                </label>
-                <label className="label">
-                  <input ref={this.checkboxTerraceRef} type="checkbox" name="terrace" onChange={this.handleChangeInput} />
-                  Terrace
-                </label>
-                <label className="label">
-                  <input ref={this.checkboxParkingRef} type="checkbox" name="parking" onChange={this.handleChangeInput} />
-                  Parking
-                </label>
+              <div className="checkboxes__wrapper">
+                <FieldCheckbox
+                  ref={this.checkboxBalconyRef}
+                  classNames={['label']}
+                  label="balcony"
+                  onChange={this.handleChangeInput}
+                />
+                <FieldCheckbox
+                  ref={this.checkboxTerraceRef}
+                  classNames={['label']}
+                  label="terrace"
+                  onChange={this.handleChangeInput}
+                />
+                <FieldCheckbox
+                  ref={this.checkboxParkingRef}
+                  classNames={['label']}
+                  label="parking"
+                  onChange={this.handleChangeInput}
+                />
               </div>
             </div>
 
-            {/* <label className="label">Sex:</label> */}
-            {/* <div className="radio__wrapper">
-              <label className="label_radio">
-                <input
-                  ref={this.inputMaleRef}
-                  id="male"
-                  type="radio"
-                  name="sex"
-                  value="male"
-                  checked={true}
-                  className="input input_radio"
+            <div className="form__item">
+              <p>Rooms:</p>
+              <div className="radio__wrapper">
+                <FieldRadio
+                  ref={this.radioOneRoomRef}
+                  id="one-rooms"
+                  name="rooms"
+                  label="1"
                   onChange={this.handleChangeInput}
                 />
-                Male
-              </label>
-              <label className="label_radio">
-                <input
-                  ref={this.inputRoomsRef}
-                  id="female"
-                  type="radio"
-                  name="sex"
-                  value="female"
-                  className="input input_radio"
+                <FieldRadio
+                  ref={this.radioTwoRoomRef}
+                  id="two-rooms"
+                  name="rooms"
+                  label="2"
                   onChange={this.handleChangeInput}
                 />
-                Female
-              </label>
-            </div> */}
-            <label htmlFor="price" className="label">
-              Price:
-            </label>
-            <input
+                <FieldRadio
+                  ref={this.radioThreeRoomRef}
+                  id="three-rooms"
+                  name="rooms"
+                  label="3"
+                  onChange={this.handleChangeInput}
+                />
+                <FieldRadio
+                  ref={this.radioFourRoomRef}
+                  id="four-rooms"
+                  name="rooms"
+                  label="4"
+                  onChange={this.handleChangeInput}
+                />
+              </div>
+            </div>
+
+            <FieldInput
+              type="text"
               id="price"
               ref={this.inputPriceRef}
-              type="text"
-              name="name"
-              className="input input_text"
+              label="Price:"
+              classNames={['input', 'input_text']}
               onChange={this.handleChangeInput}
             />
+
             <label
               ref={this.inputFileLabelRef}
               htmlFor="image"
@@ -201,8 +220,9 @@ export class Form extends Component<Record<string, never>, FormState> {
               className="input input_file"
               onChange={this.handleChangeInput}
             />
-            <div ref={this.imageRef} className="image"></div>
-            <button onClick={this.handleClickSubmit} className="button">Submit</button>
+            <button onClick={this.handleClickSubmit} className="button">
+              Submit
+            </button>
           </form>
         </div>
       </Fragment>
