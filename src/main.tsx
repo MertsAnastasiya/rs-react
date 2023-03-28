@@ -6,5 +6,5 @@ import App from './components/app/App';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-)
+  </BrowserRouter>
+);
