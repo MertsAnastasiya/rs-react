@@ -100,5 +100,6 @@
         "rooms": 1,
         "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
       }
-    ]
-  }
+    ],
+    "cities": []
+}

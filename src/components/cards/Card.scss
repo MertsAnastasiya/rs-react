@@ -29,8 +29,14 @@
 }
 
 .card__city, .card__price {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     color: $color-add;
+}
+
+.card__street {
+    font-size: 2rem;
+    height: 2rem;
+    overflow: hidden;
 }
 
 .card__detail {

@@ -5,3 +5,11 @@ export function createClassList(names: string[]): string {
 
   return classListString;
 }
+
+export function isNumber(price: string): boolean {
+  return /^\d*$/.test(price) ? true : false;
+}
+
+export function isEmpty(value: string): boolean {
+  return value !== '' ? true : false;
+}

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { CardProps } from 'types';
 import { createClassList } from '../../utils';
-import './Card.scss';
+// import '../../components/cards/Card.scss';
 
 export class Card extends Component<CardProps, Record<string, never>> {
   public render(): JSX.Element {
