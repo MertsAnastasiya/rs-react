@@ -1,8 +1,8 @@
-import React, { ForwardedRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { FieldInputProps } from 'types';
 import { createClassList } from '../../utils';
 
-export const FieldInput = React.forwardRef(
+export const FieldInput = forwardRef(
   (props: FieldInputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const { type, id, label, classNames, onChange } = props;
     return (

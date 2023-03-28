@@ -1,9 +1,8 @@
-import React from 'react';
-import { ForwardedRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { FieldCheckboxProps } from 'types';
 import { createClassList } from '../../utils';
 
-export const FieldCheckbox = React.forwardRef(
+export const FieldCheckbox = forwardRef(
   (props: FieldCheckboxProps, ref: ForwardedRef<HTMLInputElement>) => {
     const { label, classNames, onChange } = props;
     return (
