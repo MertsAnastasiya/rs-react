@@ -89,6 +89,15 @@ export class Form extends Component<Record<string, never>, FormState> {
           />
         ),
       });
+      this.inputStreetRef.current!.value = '';
+      this.inputCityRef.current!.value = 'select';
+      this.inputAvailabilityRef.current!.value = '';
+      this.inputPriceRef.current!.value = '';
+      this.inputFileLabelRef.current!.textContent = 'Load photo...';
+      this.checkboxParkingRef.current!.checked = false;
+      this.checkboxBalconyRef.current!.checked = false;
+      this.checkboxTerraceRef.current!.checked = false;
+      this.radioOneRoomRef.current!.checked = false;
     }
   };
 
@@ -100,7 +109,7 @@ export class Form extends Component<Record<string, never>, FormState> {
     ));
   };
 
-  public render(): JSX.Element {
+  public render() {
     return (
       <Fragment>
         <div className="main main__container">
@@ -123,10 +132,6 @@ export class Form extends Component<Record<string, never>, FormState> {
                     -- Select the city --
                   </option>
                   {this.getCities(cities)}
-                  {/* {cities.map(city => <option value={city}>{city}</option>)} */}
-                  {/* <option value="hague">The Hague</option>
-                  <option value="amsterdam">Amsterdam</option>
-                  <option value="rotterdam">Rotterdam</option> */}
                 </select>
 
                 <FieldInput
