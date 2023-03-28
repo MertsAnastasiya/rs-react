@@ -25,11 +25,11 @@ describe('FieldCheckbox component', () => {
       const checkboxBalconyRef: React.RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
       root.render(
         <FieldCheckbox
-                  ref={checkboxBalconyRef}
-                  classNames={['label']}
-                  label="garage"
-                  onChange={handleChangeInput}
-                />
+          ref={checkboxBalconyRef}
+          classNames={['label']}
+          label="garage"
+          onChange={handleChangeInput}
+        />
       );
     });
     if (!container) {

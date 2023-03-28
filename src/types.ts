@@ -4,8 +4,6 @@ export type InputProps = {
   placeholder: string;
   searchValue: string;
   changeStateBySeacrh: (searchValue: string) => void;
-  // searchData: (searchValue: string) => JSX.Element;
-  // searchData: (searchValue: string) => IProduct[];
 };
 
 export type InputState = {
@@ -20,7 +18,6 @@ export interface IProduct {
   living: number;
   rooms: number;
   thumbnail: string;
-  // images: string[];
 }
 
 export type ProductProperty = keyof IProduct;
@@ -32,7 +29,7 @@ export type CardProps = {
   rooms: number;
   price: number;
   thumbnail: string;
-}
+};
 
 export type FormState = {
   streetText: string;

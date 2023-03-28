@@ -25,13 +25,13 @@ describe('FieldInput component', () => {
       const inputStreetRef: React.RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
       root.render(
         <FieldInput
-            type="text"
-            id="street"
-            ref={inputStreetRef}
-            label="Street:"
-            classNames={['input', 'input_text']}
-            onChange={handleChangeInput}
-      />
+          type="text"
+          id="street"
+          ref={inputStreetRef}
+          label="Street:"
+          classNames={['input', 'input_text']}
+          onChange={handleChangeInput}
+        />
       );
     });
     if (!container) {

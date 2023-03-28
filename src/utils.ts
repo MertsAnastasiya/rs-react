@@ -1,5 +1,5 @@
 export function createClassList(names: string[]): string {
-  let classListString: string = '';
+  let classListString = '';
   names.forEach((item) => (classListString += `${item} `));
   classListString = classListString.substring(0, classListString.length - 1);
 
