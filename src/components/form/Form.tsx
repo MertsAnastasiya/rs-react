@@ -109,7 +109,7 @@ export class Form extends Component<Record<string, never>, FormState> {
     ));
   };
 
-  public render(): JSX.Element {
+  public render() {
     return (
       <Fragment>
         <div className="main main__container">
@@ -132,10 +132,6 @@ export class Form extends Component<Record<string, never>, FormState> {
                     -- Select the city --
                   </option>
                   {this.getCities(cities)}
-                  {/* {cities.map(city => <option value={city}>{city}</option>)} */}
-                  {/* <option value="hague">The Hague</option>
-                  <option value="amsterdam">Amsterdam</option>
-                  <option value="rotterdam">Rotterdam</option> */}
                 </select>
 
                 <FieldInput

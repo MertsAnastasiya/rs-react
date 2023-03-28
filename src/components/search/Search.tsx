@@ -28,7 +28,7 @@ export class Seacrh extends Component<InputProps, InputState> {
     this.props.changeStateBySeacrh(target.value);
   };
 
-  public render(): JSX.Element {
+  public render() {
     const { id, classes, placeholder } = this.props;
     const { searchValue } = this.state;
     return (

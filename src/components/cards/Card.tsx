@@ -4,7 +4,7 @@ import { createClassList } from '../../utils';
 // import '../../components/cards/Card.scss';
 
 export class Card extends Component<CardProps, Record<string, never>> {
-  public render(): JSX.Element {
+  public render() {
     return (
       <div className={createClassList(this.props.classes)}>
         <img className="card__image" src={this.props.thumbnail}></img>

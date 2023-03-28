@@ -32,7 +32,7 @@ export class Home extends Component<Record<string, never>, { searchValue: string
     this.setState({ searchValue: searchInputValue });
   };
 
-  public render(): JSX.Element {
+  public render() {
     return (
       <div className="main__container container">
         <Seacrh

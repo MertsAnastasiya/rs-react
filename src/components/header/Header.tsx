@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 
-export const Header = (): JSX.Element => {
+export const Header = () => {
   return (
     <header className="header">
       <div className="header__container container">
