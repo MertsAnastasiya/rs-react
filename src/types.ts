@@ -23,6 +23,7 @@ export interface IProduct {
 export type ProductProperty = keyof IProduct;
 
 export type CardProps = {
+  classes: string[];
   street: string;
   city: string;
   living: number;
@@ -40,7 +41,8 @@ export type FormState = {
   parking: boolean;
   balcony: boolean;
   terrace: boolean;
-  rooms: string;
+  rooms: number;
+  card: JSX.Element;
 };
 
 export type FieldCheckboxProps = {
