@@ -5,7 +5,7 @@ import { FieldRadio } from './FieldRadio';
 import { FormState } from 'types';
 import { Card } from '../cards/Card';
 import './Form.scss';
-import { getCities, isEmpty, isNumber } from '../../utils';
+import { isEmpty, isNumber } from '../../utils';
 import { cities } from '../../data';
 
 export class Form extends Component<Record<string, never>, FormState> {
@@ -66,10 +66,13 @@ export class Form extends Component<Record<string, never>, FormState> {
   private handleClickSubmit = (event: React.MouseEvent): void => {
     event.preventDefault();
     let isShow = false;
+    isShow =
+      isEmpty(this.inputCityRef.current!.value) && this.inputCityRef.current!.value !== 'select';
     isShow = isEmpty(this.inputStreetRef.current!.value);
     isShow = isEmpty(this.inputAvailabilityRef.current!.value);
     isShow = isEmpty(this.inputFileRef.current!.value);
-    isShow = isNumber(this.inputPriceRef.current!.value);
+    isShow =
+      isEmpty(this.inputPriceRef.current!.value) && isNumber(this.inputPriceRef.current!.value);
 
     if (isShow) {
       this.setState({
@@ -113,7 +116,7 @@ export class Form extends Component<Record<string, never>, FormState> {
                   ref={this.inputCityRef}
                   className="input input_select"
                   name="selectedCity"
-                  defaultValue={"select"}
+                  defaultValue={'select'}
                   onChange={this.handleChangeInput}
                 >
                   <option value="select" disabled>
