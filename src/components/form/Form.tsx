@@ -89,6 +89,15 @@ export class Form extends Component<Record<string, never>, FormState> {
           />
         ),
       });
+      this.inputStreetRef.current!.value = '';
+      this.inputCityRef.current!.value = 'select';
+      this.inputAvailabilityRef.current!.value = '';
+      this.inputPriceRef.current!.value = '';
+      this.inputFileLabelRef.current!.textContent = 'Load photo...';
+      this.checkboxParkingRef.current!.checked = false;
+      this.checkboxBalconyRef.current!.checked = false;
+      this.checkboxTerraceRef.current!.checked = false;
+      this.radioOneRoomRef.current!.checked = false;
     }
   };
 
