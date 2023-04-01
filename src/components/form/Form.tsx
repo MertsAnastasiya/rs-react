@@ -9,12 +9,14 @@ import { isEmpty, isNumber } from '../../utils';
 import { cities } from '../../data';
 import { FormItem } from './FormItem';
 
-const PROPERTIES = [
+const RADIO_PROPERTIES = [
   { label: '1', id: '1-room', refName: 'one' },
   { label: '2', id: '2-room', refName: 'two' },
   { label: '3', id: '3-room', refName: 'three' },
   { label: '4', id: '4-room', refName: 'four' },
 ];
+
+const CHECKBOX_PROPERTIES = [{ label: 'balcony' }, { label: 'terrace' }, { label: 'parking' }];
 
 export class Form extends Component<Record<string, never>, FormState> {
   public state: FormState = {
@@ -46,6 +48,11 @@ export class Form extends Component<Record<string, never>, FormState> {
   private radioRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   private roomsRef = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
+  private checkboxRefs = [
+    React.createRef<HTMLInputElement>(),
+    React.createRef<HTMLInputElement>(),
+    React.createRef<HTMLInputElement>(),
+  ];
 
   private handleChangeInput = (event: React.ChangeEvent): void => {
     if (event.target.classList.value.includes('input_file')) {
@@ -161,33 +168,48 @@ export class Form extends Component<Record<string, never>, FormState> {
                   classNames={['input', 'input_date']}
                   onChange={this.handleChangeInput}
                 />
-                <div className="form__item">
-                  <p className="label">Additional options:</p>
+
+                <FormItem title="Additional options">
                   <div className="checkboxes__wrapper">
-                    <FieldCheckbox
-                      ref={this.checkboxBalconyRef}
-                      classNames={['label']}
-                      label="balcony"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldCheckbox
-                      ref={this.checkboxTerraceRef}
-                      classNames={['label']}
-                      label="terrace"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldCheckbox
-                      ref={this.checkboxParkingRef}
-                      classNames={['label']}
-                      label="parking"
-                      onChange={this.handleChangeInput}
-                    />
+                    {CHECKBOX_PROPERTIES.map((property, index) => {
+                      return (
+                        <FieldCheckbox
+                          ref={this.checkboxRefs[index]}
+                          classNames={['label']}
+                          label={property.label}
+                          onChange={this.handleChangeInput}
+                        />
+                      );
+                    })}
                   </div>
-                </div>
+                </FormItem>
+                {/* <div className="form__item">
+                  <p className="label">Additional options:</p> */}
+                {/* <div className="checkboxes__wrapper">
+                  <FieldCheckbox
+                    ref={this.checkboxBalconyRef}
+                    classNames={['label']}
+                    label="balcony"
+                    onChange={this.handleChangeInput}
+                  />
+                  <FieldCheckbox
+                    ref={this.checkboxTerraceRef}
+                    classNames={['label']}
+                    label="terrace"
+                    onChange={this.handleChangeInput}
+                  />
+                  <FieldCheckbox
+                    ref={this.checkboxParkingRef}
+                    classNames={['label']}
+                    label="parking"
+                    onChange={this.handleChangeInput}
+                  />
+                </div> */}
+                {/* </div> */}
 
                 <FormItem title="Rooms">
                   <div className="radio__wrapper">
-                    {PROPERTIES.map((property) => {
+                    {RADIO_PROPERTIES.map((property) => {
                       return (
                         <FieldRadio
                           key={property.id}
