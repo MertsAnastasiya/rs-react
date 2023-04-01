@@ -8,6 +8,7 @@ import './Form.scss';
 import { isEmpty, isNumber } from '../../utils';
 import { cities } from '../../data';
 import { FormItem } from './FormItem';
+import { FieldFile } from './FieldFile';
 
 const RADIO_PROPERTIES = [
   { label: '1', id: '1-room', refName: 'one' },
@@ -183,30 +184,6 @@ export class Form extends Component<Record<string, never>, FormState> {
                     })}
                   </div>
                 </FormItem>
-                {/* <div className="form__item">
-                  <p className="label">Additional options:</p> */}
-                {/* <div className="checkboxes__wrapper">
-                  <FieldCheckbox
-                    ref={this.checkboxBalconyRef}
-                    classNames={['label']}
-                    label="balcony"
-                    onChange={this.handleChangeInput}
-                  />
-                  <FieldCheckbox
-                    ref={this.checkboxTerraceRef}
-                    classNames={['label']}
-                    label="terrace"
-                    onChange={this.handleChangeInput}
-                  />
-                  <FieldCheckbox
-                    ref={this.checkboxParkingRef}
-                    classNames={['label']}
-                    label="parking"
-                    onChange={this.handleChangeInput}
-                  />
-                </div> */}
-                {/* </div> */}
-
                 <FormItem title="Rooms">
                   <div className="radio__wrapper">
                     {RADIO_PROPERTIES.map((property) => {
@@ -233,18 +210,10 @@ export class Form extends Component<Record<string, never>, FormState> {
                   onChange={this.handleChangeInput}
                 />
 
-                <label
-                  ref={this.inputFileLabelRef}
-                  htmlFor="image"
-                  className="label label_file"
+                <FieldFile
+                  refLabel={this.inputFileLabelRef}
+                  refFile={this.inputFileRef}
                   onClick={this.handleClickFile}
-                >
-                  Load photos...
-                </label>
-                <input
-                  ref={this.inputFileRef}
-                  type="file"
-                  className="input input_file"
                   onChange={this.handleChangeInput}
                 />
                 <button onClick={this.handleClickSubmit} className="button">
