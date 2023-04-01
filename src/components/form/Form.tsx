@@ -7,6 +7,14 @@ import { Card } from '../cards/Card';
 import './Form.scss';
 import { isEmpty, isNumber } from '../../utils';
 import { cities } from '../../data';
+import { FormItem } from './FormItem';
+
+const PROPERTIES = [
+  { label: '1', id: '1-room', refName: 'one' },
+  { label: '2', id: '2-room', refName: 'two' },
+  { label: '3', id: '3-room', refName: 'three' },
+  { label: '4', id: '4-room', refName: 'four' },
+];
 
 export class Form extends Component<Record<string, never>, FormState> {
   public state: FormState = {
@@ -36,6 +44,8 @@ export class Form extends Component<Record<string, never>, FormState> {
   private radioThreeRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
   private radioFourRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
   private radioRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+
+  private roomsRef = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
 
   private handleChangeInput = (event: React.ChangeEvent): void => {
     if (event.target.classList.value.includes('input_file')) {
@@ -175,39 +185,22 @@ export class Form extends Component<Record<string, never>, FormState> {
                   </div>
                 </div>
 
-                <div className="form__item">
-                  <p>Rooms:</p>
+                <FormItem title="Rooms">
                   <div className="radio__wrapper">
-                    <FieldRadio
-                      ref={this.radioOneRoomRef}
-                      id="1-rooms"
-                      name="rooms"
-                      label="1"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioTwoRoomRef}
-                      id="2-rooms"
-                      name="rooms"
-                      label="2"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioThreeRoomRef}
-                      id="three-rooms"
-                      name="rooms"
-                      label="3"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioFourRoomRef}
-                      id="four-rooms"
-                      name="rooms"
-                      label="4"
-                      onChange={this.handleChangeInput}
-                    />
+                    {PROPERTIES.map((property) => {
+                      return (
+                        <FieldRadio
+                          key={property.id}
+                          id={property.id}
+                          label={property.label}
+                          ref={this.roomsRef[0]}
+                          onChange={this.handleChangeInput}
+                          name="rooms"
+                        />
+                      );
+                    })}
                   </div>
-                </div>
+                </FormItem>
 
                 <FieldInput
                   type="text"
