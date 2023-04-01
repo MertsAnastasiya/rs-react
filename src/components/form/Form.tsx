@@ -6,9 +6,10 @@ import { FormState } from 'types';
 import { Card } from '../cards/Card';
 import './Form.scss';
 import { isEmpty, isNumber } from '../../utils';
-import { cities } from '../../data';
+import { CITIES } from '../../data';
 import { FormItem } from './FormItem';
 import { FieldFile } from './FieldFile';
+import { FieldSelect } from './FieldSelect';
 
 const RADIO_PROPERTIES = [
   { label: '1', id: '1-room', refName: 'one' },
@@ -119,13 +120,13 @@ export class Form extends Component<Record<string, never>, FormState> {
     }
   };
 
-  private getCities = (cities: string[]): JSX.Element[] => {
-    return cities.map((city) => (
-      <option key={city} value={city}>
-        {city}
-      </option>
-    ));
-  };
+  // private getCities = (cities: string[]): JSX.Element[] => {
+  //   return cities.map((city) => (
+  //     <option key={city} value={city}>
+  //       {city}
+  //     </option>
+  //   ));
+  // };
 
   public render() {
     return (
@@ -135,22 +136,13 @@ export class Form extends Component<Record<string, never>, FormState> {
             <h1 className="h1">Form</h1>
             <div className="wrapper__form-card">
               <form className="form">
-                <label htmlFor="city" className="label">
-                  Choose a city:
-                </label>
-                <select
-                  id="city"
-                  ref={this.inputCityRef}
-                  className="input input_select"
+                <FieldSelect
+                  label="Choose a city"
                   name="selectedCity"
-                  defaultValue={'select'}
+                  ref={this.inputCityRef}
                   onChange={this.handleChangeInput}
-                >
-                  <option value="select" disabled>
-                    -- Select the city --
-                  </option>
-                  {this.getCities(cities)}
-                </select>
+                  data={CITIES}
+                />
 
                 <FieldInput
                   type="text"
