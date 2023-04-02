@@ -1,46 +1,37 @@
-import { Component } from 'react';
-import { InputProps, InputState } from 'types';
+import { useState, useEffect } from 'react';
+import { InputProps } from 'types';
 import './Search.scss';
 
-export class Seacrh extends Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
+export const Seacrh = (props: InputProps) => {
+  const [searchValue, setSearchValue] = useState(props.searchValue);
 
-    this.state = { searchValue: this.props.searchValue };
-  }
+  useEffect(() => {
+    localStorage.setItem('searchValue', searchValue);
+  });
 
-  public componentWillUnmount(): void {
-    localStorage.setItem('searchValue', this.state.searchValue);
-  }
-
-  private handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
     if (event.key === 'Enter') {
-      this.props.changeStateBySeacrh(target.value);
+      props.changeStateBySeacrh(target.value);
     }
   };
 
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const target: HTMLInputElement = event.target as HTMLInputElement;
-    this.setState({
-      searchValue: target.value,
-    });
-    this.props.changeStateBySeacrh(target.value);
+    setSearchValue(target.value);
+    props.changeStateBySeacrh(target.value);
   };
+  const { id, classes, placeholder } = props;
 
-  public render() {
-    const { id, classes, placeholder } = this.props;
-    const { searchValue } = this.state;
-    return (
-      <input
-        type="text"
-        value={searchValue}
-        name={id}
-        className={classes}
-        placeholder={placeholder}
-        onKeyUp={this.handleKeyUp}
-        onChange={this.handleChange}
-      />
-    );
-  }
-}
+  return (
+    <input
+      type="text"
+      value={searchValue}
+      name={id}
+      className={classes}
+      placeholder={placeholder}
+      onKeyUp={handleKeyUp}
+      onChange={handleChange}
+    />
+  );
+};
