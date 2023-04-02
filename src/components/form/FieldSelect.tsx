@@ -1,14 +1,15 @@
+import React, { ForwardedRef } from 'react';
 import { Fragment } from 'react';
 
 type FieldSelectProps = {
   label: string;
   name: string;
-  ref: React.RefObject<HTMLSelectElement>;
   onChange: (event: React.ChangeEvent) => void;
   data: string[];
 };
 
-export const FieldSelect = (props: FieldSelectProps) => {
+export const FieldSelect = React.forwardRef(
+  (props: FieldSelectProps, ref: ForwardedRef<HTMLSelectElement>) => {
   const getCities = (cities: string[]): JSX.Element[] => {
     return cities.map((city) => (
       <option key={city} value={city}>
@@ -16,6 +17,7 @@ export const FieldSelect = (props: FieldSelectProps) => {
       </option>
     ));
   };
+
   return (
     <Fragment>
       <label htmlFor="city" className="label">
@@ -23,7 +25,7 @@ export const FieldSelect = (props: FieldSelectProps) => {
       </label>
       <select
         id="city"
-        ref={props.ref}
+        ref={ref}
         className="input input_select"
         name="selectedCity"
         defaultValue={'select'}
@@ -36,4 +38,4 @@ export const FieldSelect = (props: FieldSelectProps) => {
       </select>
     </Fragment>
   );
-};
+});
