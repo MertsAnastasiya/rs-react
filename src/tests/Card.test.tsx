@@ -23,6 +23,7 @@ describe('Card component', () => {
       root.render(
         <Card
           key={1}
+          classes={['input']}
           street={'Amsterdamse Veerkade 1'}
           price={1455}
           city={'The Hague'}

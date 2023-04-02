@@ -14,6 +14,7 @@ export const CardsList = (props: CardsListProps): JSX.Element => {
         return (
           <Card
             key={id}
+            classes={['card']}
             street={street}
             price={price}
             city={city}

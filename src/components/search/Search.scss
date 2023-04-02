@@ -1,6 +1,7 @@
 @import '../../constants';
+@import '../../reset';
 
-.input {
+.input, .select {
     border-radius: $border-radius;
     border: 2px solid $color-light;
     background-color: $color-dark;

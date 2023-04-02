@@ -26,14 +26,17 @@
     width: 99%;
     height: 15rem;
     border-radius: $border-radius;
-    // background-image: url('https://i.dummyjson.com/data/products/2/thumbnail.jpg');
-    // background-position: center;
-    // background-size: cover;
 }
 
 .card__city, .card__price {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     color: $color-add;
+}
+
+.card__street {
+    font-size: 2rem;
+    height: 2rem;
+    overflow: hidden;
 }
 
 .card__detail {
@@ -58,4 +61,29 @@
 .card__like.liked{
     -webkit-mask: url('../../assets/icons/liked.svg') no-repeat center;
     mask: url('../../assets/icons/liked.svg') no-repeat center;
+}
+
+.card_big {
+    margin-top: 2rem;
+    width: 40%;
+    height: 100%;
+
+    & .card__city, & .card__price {
+        font-size: 2rem;
+    }
+
+    & .card__detail {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 1.8rem;
+        color: $color-bright;
+    }
+
+    & .card__image {
+        height: 30rem;
+    }
+
+    &_not-defined {
+        background-color: red;
+    }
 }
