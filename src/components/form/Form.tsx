@@ -167,6 +167,7 @@ export class Form extends Component<Record<string, never>, FormState> {
                     {CHECKBOX_PROPERTIES.map((property, index) => {
                       return (
                         <FieldCheckbox
+                          key={property.label}
                           ref={this.checkboxRefs[index]}
                           classNames={['label']}
                           label={property.label}

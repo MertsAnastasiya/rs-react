@@ -5,8 +5,7 @@ import { productsData } from '../data';
 import { IProduct, ProductProperty } from 'types';
 import { CardsList } from './cards/CardsList';
 
-  export const Home = () => {
-
+export const Home = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const searchData = (searchValue: string): IProduct[] => {
@@ -28,19 +27,19 @@ import { CardsList } from './cards/CardsList';
   };
 
   const changeStateBySeacrh = (searchInputValue: string): void => {
-    setSearchValue (searchInputValue);
+    setSearchValue(searchInputValue);
   };
 
-    return (
-      <div className="main__container container">
-        <Seacrh
-          id="search"
-          classes={createClassList(['input', 'input_search'])}
-          placeholder="What are you looking for?"
-          searchValue={searchValue}
-          changeStateBySeacrh={changeStateBySeacrh}
-        />
-        <CardsList productResult={searchData(searchValue)} />
-      </div>
-    );
-}
+  return (
+    <div className="main__container container">
+      <Seacrh
+        id="search"
+        classes={createClassList(['input', 'input_search'])}
+        placeholder="What are you looking for?"
+        searchValue={searchValue}
+        changeStateBySeacrh={changeStateBySeacrh}
+      />
+      <CardsList productResult={searchData(searchValue)} />
+    </div>
+  );
+};

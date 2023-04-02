@@ -1,21 +1,21 @@
 import { Fragment } from 'react';
 
 type FieldSelectProps = {
-    label: string,
-    name: string,
-    ref: React.RefObject<HTMLSelectElement>,
-    onChange: (event: React.ChangeEvent) => void,
-    data: string[],
-  };
+  label: string;
+  name: string;
+  ref: React.RefObject<HTMLSelectElement>;
+  onChange: (event: React.ChangeEvent) => void;
+  data: string[];
+};
 
 export const FieldSelect = (props: FieldSelectProps) => {
-    const getCities = (cities: string[]): JSX.Element[] => {
-        return cities.map((city) => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ));
-      };
+  const getCities = (cities: string[]): JSX.Element[] => {
+    return cities.map((city) => (
+      <option key={city} value={city}>
+        {city}
+      </option>
+    ));
+  };
   return (
     <Fragment>
       <label htmlFor="city" className="label">
