@@ -56,5 +56,4 @@ export type FieldInputProps = {
   label: string;
   id: string;
   classNames: string[];
-  onChange: (event: React.ChangeEvent) => void;
 };

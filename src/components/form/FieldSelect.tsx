@@ -1,15 +1,16 @@
-import React, { ForwardedRef } from 'react';
+import React from 'react';
 import { Fragment } from 'react';
 
 type FieldSelectProps = {
   label: string;
   name: string;
-  onChange: (event: React.ChangeEvent) => void;
   data: string[];
+  register: any;
 };
 
-export const FieldSelect = React.forwardRef(
-  (props: FieldSelectProps, ref: ForwardedRef<HTMLSelectElement>) => {
+export const FieldSelect = (props: FieldSelectProps) => {
+  const { name, label, data, register } = props;
+
   const getCities = (cities: string[]): JSX.Element[] => {
     return cities.map((city) => (
       <option key={city} value={city}>
@@ -20,22 +21,22 @@ export const FieldSelect = React.forwardRef(
 
   return (
     <Fragment>
-      <label htmlFor="city" className="label">
-        {props.label}:
+      <label htmlFor={name} className="label">
+        {label}:
       </label>
       <select
-        id="city"
-        ref={ref}
+        id={name}
         className="input input_select"
-        name="selectedCity"
         defaultValue={'select'}
-        onChange={props.onChange}
+        {...register(name, {
+          required: true,
+        })}
       >
         <option value="select" disabled>
-          -- Select the city --
+          -- {label} --
         </option>
-        {getCities(props.data)}
+        {getCities(data)}
       </select>
     </Fragment>
   );
-});
+};
