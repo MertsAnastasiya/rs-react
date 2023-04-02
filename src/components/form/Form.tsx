@@ -6,7 +6,19 @@ import { FormState } from 'types';
 import { Card } from '../cards/Card';
 import './Form.scss';
 import { isEmpty, isNumber } from '../../utils';
-import { cities } from '../../data';
+import { CITIES } from '../../data';
+import { FormItem } from './FormItem';
+import { FieldFile } from './FieldFile';
+import { FieldSelect } from './FieldSelect';
+
+const RADIO_PROPERTIES = [
+  { label: '1', id: '1-room', refName: 'one' },
+  { label: '2', id: '2-room', refName: 'two' },
+  { label: '3', id: '3-room', refName: 'three' },
+  { label: '4', id: '4-room', refName: 'four' },
+];
+
+const CHECKBOX_PROPERTIES = [{ label: 'balcony' }, { label: 'terrace' }, { label: 'parking' }];
 
 export class Form extends Component<Record<string, never>, FormState> {
   public state: FormState = {
@@ -36,6 +48,13 @@ export class Form extends Component<Record<string, never>, FormState> {
   private radioThreeRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
   private radioFourRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
   private radioRoomRef: React.RefObject<HTMLInputElement> = React.createRef();
+
+  private roomsRef = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
+  private checkboxRefs = [
+    React.createRef<HTMLInputElement>(),
+    React.createRef<HTMLInputElement>(),
+    React.createRef<HTMLInputElement>(),
+  ];
 
   private handleChangeInput = (event: React.ChangeEvent): void => {
     if (event.target.classList.value.includes('input_file')) {
@@ -101,13 +120,13 @@ export class Form extends Component<Record<string, never>, FormState> {
     }
   };
 
-  private getCities = (cities: string[]): JSX.Element[] => {
-    return cities.map((city) => (
-      <option key={city} value={city}>
-        {city}
-      </option>
-    ));
-  };
+  // private getCities = (cities: string[]): JSX.Element[] => {
+  //   return cities.map((city) => (
+  //     <option key={city} value={city}>
+  //       {city}
+  //     </option>
+  //   ));
+  // };
 
   public render() {
     return (
@@ -117,22 +136,13 @@ export class Form extends Component<Record<string, never>, FormState> {
             <h1 className="h1">Form</h1>
             <div className="wrapper__form-card">
               <form className="form">
-                <label htmlFor="city" className="label">
-                  Choose a city:
-                </label>
-                <select
-                  id="city"
-                  ref={this.inputCityRef}
-                  className="input input_select"
+                <FieldSelect
+                  label="Choose a city"
                   name="selectedCity"
-                  defaultValue={'select'}
+                  ref={this.inputCityRef}
                   onChange={this.handleChangeInput}
-                >
-                  <option value="select" disabled>
-                    -- Select the city --
-                  </option>
-                  {this.getCities(cities)}
-                </select>
+                  data={CITIES}
+                />
 
                 <FieldInput
                   type="text"
@@ -151,63 +161,37 @@ export class Form extends Component<Record<string, never>, FormState> {
                   classNames={['input', 'input_date']}
                   onChange={this.handleChangeInput}
                 />
-                <div className="form__item">
-                  <p className="label">Additional options:</p>
-                  <div className="checkboxes__wrapper">
-                    <FieldCheckbox
-                      ref={this.checkboxBalconyRef}
-                      classNames={['label']}
-                      label="balcony"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldCheckbox
-                      ref={this.checkboxTerraceRef}
-                      classNames={['label']}
-                      label="terrace"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldCheckbox
-                      ref={this.checkboxParkingRef}
-                      classNames={['label']}
-                      label="parking"
-                      onChange={this.handleChangeInput}
-                    />
-                  </div>
-                </div>
 
-                <div className="form__item">
-                  <p>Rooms:</p>
-                  <div className="radio__wrapper">
-                    <FieldRadio
-                      ref={this.radioOneRoomRef}
-                      id="1-rooms"
-                      name="rooms"
-                      label="1"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioTwoRoomRef}
-                      id="2-rooms"
-                      name="rooms"
-                      label="2"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioThreeRoomRef}
-                      id="three-rooms"
-                      name="rooms"
-                      label="3"
-                      onChange={this.handleChangeInput}
-                    />
-                    <FieldRadio
-                      ref={this.radioFourRoomRef}
-                      id="four-rooms"
-                      name="rooms"
-                      label="4"
-                      onChange={this.handleChangeInput}
-                    />
+                <FormItem title="Additional options">
+                  <div className="checkboxes__wrapper">
+                    {CHECKBOX_PROPERTIES.map((property, index) => {
+                      return (
+                        <FieldCheckbox
+                          ref={this.checkboxRefs[index]}
+                          classNames={['label']}
+                          label={property.label}
+                          onChange={this.handleChangeInput}
+                        />
+                      );
+                    })}
                   </div>
-                </div>
+                </FormItem>
+                <FormItem title="Rooms">
+                  <div className="radio__wrapper">
+                    {RADIO_PROPERTIES.map((property) => {
+                      return (
+                        <FieldRadio
+                          key={property.id}
+                          id={property.id}
+                          label={property.label}
+                          ref={this.roomsRef[0]}
+                          onChange={this.handleChangeInput}
+                          name="rooms"
+                        />
+                      );
+                    })}
+                  </div>
+                </FormItem>
 
                 <FieldInput
                   type="text"
@@ -218,18 +202,10 @@ export class Form extends Component<Record<string, never>, FormState> {
                   onChange={this.handleChangeInput}
                 />
 
-                <label
-                  ref={this.inputFileLabelRef}
-                  htmlFor="image"
-                  className="label label_file"
+                <FieldFile
+                  refLabel={this.inputFileLabelRef}
+                  refFile={this.inputFileRef}
                   onClick={this.handleClickFile}
-                >
-                  Load photos...
-                </label>
-                <input
-                  ref={this.inputFileRef}
-                  type="file"
-                  className="input input_file"
                   onChange={this.handleChangeInput}
                 />
                 <button onClick={this.handleClickSubmit} className="button">
