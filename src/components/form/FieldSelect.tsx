@@ -1,39 +1,46 @@
+import React from 'react';
 import { Fragment } from 'react';
 
 type FieldSelectProps = {
-    label: string,
-    name: string,
-    ref: React.RefObject<HTMLSelectElement>,
-    onChange: (event: React.ChangeEvent) => void,
-    data: string[],
-  };
+  label: string;
+  name: string;
+  data: string[];
+  register: any;
+  errors: any;
+};
 
 export const FieldSelect = (props: FieldSelectProps) => {
-    const getCities = (cities: string[]): JSX.Element[] => {
-        return cities.map((city) => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ));
-      };
+  const { name, label, data, register, errors } = props;
+
+  const getCities = (cities: string[]): JSX.Element[] => {
+    return cities.map((city) => (
+      <option key={city} value={city}>
+        {city}
+      </option>
+    ));
+  };
+
   return (
     <Fragment>
-      <label htmlFor="city" className="label">
-        {props.label}:
+      <label htmlFor={name} className="label">
+        {label}:
       </label>
       <select
-        id="city"
-        ref={props.ref}
+        id={name}
         className="input input_select"
-        name="selectedCity"
         defaultValue={'select'}
-        onChange={props.onChange}
+        {...register(name, {
+          required: true,
+        })}
       >
         <option value="select" disabled>
-          -- Select the city --
+          -- {label} --
         </option>
-        {getCities(props.data)}
+        {getCities(data)}
       </select>
+      {errors[name] && errors[name].type === 'required' && (
+          <p className="error-message">Select a city.</p>
+        )}
     </Fragment>
   );
 };

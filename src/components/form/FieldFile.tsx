@@ -1,30 +1,19 @@
 import { Fragment } from 'react';
 
 type FieldFileProps = {
-  refLabel: React.RefObject<HTMLLabelElement>;
-  refFile: React.RefObject<HTMLInputElement>;
+  register: any;
+  errors: any;
   onClick: () => void;
-  onChange: (event: React.ChangeEvent) => void;
 };
 
 export const FieldFile = (props: FieldFileProps) => {
+  const { register, errors, onClick } = props;
   return (
     <Fragment>
-      <label
-        ref={props.refLabel}
-        htmlFor="file"
-        className="label label_file"
-        onClick={props.onClick}
-      >
+      <label htmlFor="file" className="label label_file" onClick={onClick}>
         Load photos...
       </label>
-      <input
-        id="file"
-        ref={props.refFile}
-        type="file"
-        className="input input_file"
-        onChange={props.onChange}
-      />
+      <input id="file" type="file" className="input input_file" {...register('file')} />
     </Fragment>
   );
 };
