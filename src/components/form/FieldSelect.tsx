@@ -6,10 +6,11 @@ type FieldSelectProps = {
   name: string;
   data: string[];
   register: any;
+  errors: any;
 };
 
 export const FieldSelect = (props: FieldSelectProps) => {
-  const { name, label, data, register } = props;
+  const { name, label, data, register, errors } = props;
 
   const getCities = (cities: string[]): JSX.Element[] => {
     return cities.map((city) => (
@@ -37,6 +38,9 @@ export const FieldSelect = (props: FieldSelectProps) => {
         </option>
         {getCities(data)}
       </select>
+      {errors[name] && errors[name].type === 'required' && (
+          <p className="error-message">Select a city.</p>
+        )}
     </Fragment>
   );
 };

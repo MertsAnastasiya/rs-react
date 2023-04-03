@@ -28,10 +28,6 @@ export const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  // const handleClickFile = (): void => {
-  //   // inputFileRef.current!.click();
-  // };
-
   const onSubmitForm = handleSubmit((data) => {
     console.log(data);
   });
@@ -40,11 +36,6 @@ export const Form = () => {
     event.preventDefault();
 
     const isShow = false;
-    // isShow = isEmpty(inputCityRef.current!.value) && inputCityRef.current!.value !== 'select';
-    // isShow = isEmpty(inputStreetRef.current!.value);
-    // isShow = isEmpty(inputAvailabilityRef.current!.value);
-    // isShow = isEmpty(inputFileRef.current!.value);
-    // isShow = isEmpty(inputPriceRef.current!.value) && isNumber(inputPriceRef.current!.value);
 
     // if (isShow) {
     //   setCard(
@@ -59,16 +50,10 @@ export const Form = () => {
     //       rooms={Number(rooms)}
     //     />
     //   );
-    //   inputStreetRef.current!.value = '';
-    //   inputCityRef.current!.value = 'select';
-    //   inputAvailabilityRef.current!.value = '';
-    //   inputPriceRef.current!.value = '';
-    //   inputFileLabelRef.current!.textContent = 'Load photo...';
-    //   checkboxParkingRef.current!.checked = false;
-    //   checkboxBalconyRef.current!.checked = false;
-    //   checkboxTerraceRef.current!.checked = false;
-    //   radioOneRoomRef.current!.checked = false;
-    // }
+  };
+
+  const handleLoadClick = (): void => {
+    console.log('load');
   };
 
   return (
@@ -78,48 +63,41 @@ export const Form = () => {
           <h1 className="h1">Form</h1>
           <div className="wrapper__form-card">
             <form onSubmit={onSubmitForm} className="form">
-              <FieldSelect label="Select a city" data={CITIES} name="city" register={register} />
+              <FieldSelect
+                label="Select a city"
+                data={CITIES}
+                name="city"
+                register={register}
+                errors={errors}
+              />
 
               <FieldInput
                 type="text"
                 id="street"
                 label="Street:"
                 classNames={['input', 'input_text']}
-                {...register('street', {
-                  required: true,
-                  minLength: 4,
-                })}
+                register={register}
+                errors={errors}
               />
-              {errors.street && errors.street.type === 'required' && (
-                <p className="error-message">Street is required.</p>
-              )}
-              {errors.street && errors.street.type === 'minLength' && (
-                <p className="error-message">Street should be at least 4 characters.</p>
-              )}
 
               <FieldInput
                 type="date"
                 id="date"
                 label="Available date:"
                 classNames={['input', 'input_date']}
-                {...register('availableDate', {
-                  required: true,
-                })}
+                register={register}
+                errors={errors}
               />
-              {errors.availableDate && errors.availableDate.type === 'required' && (
-                <p className="error-message">Available date is required.</p>
-              )}
 
-              {/* <FormItem title="Additional options">
+              <FormItem title="Additional options">
                 <div className="checkboxes__wrapper">
                   {CHECKBOX_PROPERTIES.map((property, index) => {
                     return (
                       <FieldCheckbox
                         key={property.label}
-                        ref={checkboxRefs[index]}
                         classNames={['label']}
                         label={property.label}
-                        onChange={handleChangeInput}
+                        register={register}
                       />
                     );
                   })}
@@ -133,34 +111,25 @@ export const Form = () => {
                         key={property.id}
                         id={property.id}
                         label={property.label}
-                        ref={roomsRef[0]}
-                        onChange={handleChangeInput}
                         name="rooms"
+                        register={register}
+                        errors={errors}
                       />
                     );
                   })}
                 </div>
-                </FormItem>*/}
+              </FormItem>
 
               <FieldInput
                 type="text"
                 id="price"
                 label="Price:"
                 classNames={['input', 'input_text']}
-                {...register('price', {
-                  required: true,
-                })}
+                register={register}
+                errors={errors}
               />
-              {errors.price && errors.price.type === 'required' && (
-                <p className="error-message">Price is required.</p>
-              )}
 
-              {/*<FieldFile
-                refLabel={inputFileLabelRef}
-                refFile={inputFileRef}
-                onClick={handleClickFile}
-                onChange={handleChangeInput}
-                />*/}
+              <FieldFile register={register} errors={errors} onClick={handleLoadClick} />
               <button type="submit" className="button">
                 Submit
               </button>

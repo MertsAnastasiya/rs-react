@@ -48,7 +48,7 @@ export type FormState = {
 export type FieldCheckboxProps = {
   label: string;
   classNames: string[];
-  onChange: (event: React.ChangeEvent) => void;
+  register: any;
 };
 
 export type FieldInputProps = {
@@ -56,4 +56,6 @@ export type FieldInputProps = {
   label: string;
   id: string;
   classNames: string[];
+  register: any;
+  errors: any;
 };

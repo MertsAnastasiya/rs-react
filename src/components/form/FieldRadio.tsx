@@ -5,12 +5,13 @@ type FieldRadioProps = {
   id: string;
   name: string;
   label: string;
-  onChange: (event: React.ChangeEvent) => void;
+  register: any;
+  errors: any;
 };
 
 export const FieldRadio = React.forwardRef(
   (props: FieldRadioProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const { id, name, label, onChange } = props;
+    const { id, name, label, register } = props;
 
     return (
       <label className="label_radio">
@@ -19,8 +20,8 @@ export const FieldRadio = React.forwardRef(
           id={id}
           type="radio"
           name={name}
-          onChange={onChange}
           className="input input_radio"
+          {...register(id)}
         />
         {label}
       </label>
